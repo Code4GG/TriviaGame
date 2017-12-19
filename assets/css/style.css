@@ -1,0 +1,68 @@
+body{
+	display: flex;
+	justify-content: center;
+	background-image: url('../images/background.jpg');
+	background-size: cover;
+	font-family: 'Spectral SC', serif;
+	color: #A17438;
+}
+.container{
+	margin: 25px;
+	width: 850px;
+	height: 550px;
+	border: 4px solid #A17438;
+	color: white;
+	text-align: center;
+	background-color: white;
+	opacity: 0.8;
+}
+.title{
+	margin-top: 50px;
+}
+#startGame{
+	color: #A17438;
+    font-size: 35px;
+    margin-top: 50px;
+}
+#startGame:hover{
+	background-color: white;
+	opacity: 0.8;
+}
+#questions{
+	color: #A17438;
+	margin-top: 25px;
+	display: flex;
+	flex-direction: column;
+}
+#a1{
+	border: none;
+	font-size: 28px;
+	color: #A17438;
+	font-family: 'Spectral SC', serif;
+}
+#a2{
+	border: none;
+	font-size: 28px;
+	color: #A17438;
+	font-family: 'Spectral SC', serif;
+}
+#a3{
+	border: none;
+	font-size: 28px;
+	color: #A17438;
+	font-family: 'Spectral SC', serif;
+}
+#a4{
+	border: none;
+	font-size: 28px;
+	color: #A17438;
+	font-family: 'Spectral SC', serif;
+}
+#quest{
+	font-size: 34px;
+}
+#time{
+	color: #A17438;
+    font-size: 32px;
+    display: none;
+}
