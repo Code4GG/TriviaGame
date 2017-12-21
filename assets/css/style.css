@@ -28,41 +28,34 @@ body{
 	background-color: white;
 	opacity: 0.8;
 }
+.answers:hover{
+	background-color: white;
+	border: 3px solid yellow;
+	padding-bottom: 20px;
+	color: dodgerblue;
+}
 #questions{
-	color: #A17438;
+	/*color: #A17438;*/
 	margin-top: 25px;
 	display: flex;
 	flex-direction: column;
 }
-#a1{
+.answers{
 	border: none;
 	font-size: 28px;
-	color: #A17438;
-	font-family: 'Spectral SC', serif;
-}
-#a2{
-	border: none;
-	font-size: 28px;
-	color: #A17438;
-	font-family: 'Spectral SC', serif;
-}
-#a3{
-	border: none;
-	font-size: 28px;
-	color: #A17438;
-	font-family: 'Spectral SC', serif;
-}
-#a4{
-	border: none;
-	font-size: 28px;
-	color: #A17438;
+	color: darkolivegreen;
 	font-family: 'Spectral SC', serif;
 }
 #quest{
 	font-size: 34px;
+	color: saddlebrown;
 }
 #time{
-	color: #A17438;
+	color: darkolivegreen;
     font-size: 32px;
     display: none;
+    margin-top: 35px;
+}
+#answerArea{
+	color: #A17438;
 }
