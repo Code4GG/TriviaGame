@@ -1,6 +1,6 @@
 
 	// Declare variables
-	let time = 31;
+	let time = 16;
 	let intervalId;
 	let correct = 0;
 	let incorrect = 0;
@@ -8,6 +8,7 @@
 	let questionCounter = 0;
 	let answerSelection;
 	let currentQuestion = 0;
+  //Array of objects so i can loop through
 	let qaArr = [
 		{
    		 question: "Who cuts off Jaime Lannister's hand?",   
@@ -90,7 +91,8 @@
 	]
 
 	
-
+//When start is clicked it'll show the time and remove 
+//the start as well as add questions
 	function startGame(){
 
 		$('#startGame').on('click', function(){
@@ -106,27 +108,51 @@
 	}
 	startGame();
 
+  //for when the time hits 0 or if the user completes they 
+  //will be given the object to go again
+  function tryAgain(){
 
-	function addQuestion(){
+    $('#tryAgain').on('click', function(){
+
+        currentQuestion = 0;
+
+        $('#time').show();
+
+        $('#tryAgain').hide();
+
+        addQuestion();
+
+    })
+  }
+  tryAgain();
+
+//clearing the area adding questions/possible answers
+ 	function addQuestion(){
 
 		$('#answerArea').empty();
 
 		$("#quest").empty();
-
+    
+      //currentQuestion is 0 so its going into the index of qaArr and grabbing
+      //that question
   		$("#quest").html(qaArr[currentQuestion].question);
 
-
+      //creating a for loop to place four possible answers
   		for (i=0; i<4; i++){
 
     		let answerChoice = $("<div>");
+
+        //looping through the 4 possible answers of that question in the array
     		answerChoice.html('<br>' + qaArr[currentQuestion].answer[i]);
-   		    answerChoice.addClass("answers");
+
+   		  answerChoice.addClass("answers");
+        //adding those choices 
    			$("#questions").append(answerChoice);
 
  		 }
-  
+      //reseting the time so it doesnt lap
   		timeReset(); 
-
+      //Checking to see which answer was clicked clearing then running the function
  		$('.answers').on('click',function(){
 
     	answerSelection = $(this).text();
@@ -142,32 +168,35 @@
 
 	function answer(){
 		
-
+      //Declaring the answerIndex as the correct answer in the object of the arr
   		let answerIndex = qaArr[currentQuestion].correct
-  
+      
+      //if the text clicked (string) = the correct question 
   		if (answerSelection == answerIndex) {
   			// stop();
   			$('#quest').text("YOU GOT IT!");
     		$("#answerArea").html(qaArr[currentQuestion].img);
+        //correct answer +1
    		    correct++;
+        //decreasing the amount of unanswered
    		    unanswered--;
    		    console.log(correct);
    		   
  		 }
    		 else if (answerSelection != answerIndex){
    		   
-   		    $("#answerArea").html('<iframe src="https://giphy.com/embed/Asm0IO32Mg6wE" width="480" height="248" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/fallout-Asm0IO32Mg6wE"></a></p>');
-   		    unanswered--;
-    		incorrect++
-    		
+   		 $("#answerArea").html('<iframe src="https://giphy.com/embed/Asm0IO32Mg6wE" width="480" height="248" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/fallout-Asm0IO32Mg6wE"></a></p>');
+   		 //decreasing the amount of unanswered
+        unanswered--;
+      //incorrect answer +1
+    		incorrect++;		
   		 } 
   		 
-
+    //current question +1 which tells the array to go to the next object
  		 currentQuestion++
+    //questionCounter + 1
  		 questionCounter++
- 		 setTimeout(endScreen, 5000);
- 		
- 		 
+ 		 setTimeout(endScreen, 5000); 
 	};
 
 
@@ -175,18 +204,14 @@
 
 
 	function endScreen(){
-
+    //if the question counter = 13 questions (the arrays length)
+    //stop time
+    //run the empty function
 		if (questionCounter === qaArr.length){
-
-		$('#quest').empty();
-		$('#answerArea').empty();
-		stop();
-
-		$('#quest').html("Heres How You Did:");
-		$('#answerArea').append('<div>').html('Answered Correctly: ' + correct + '<br>' + '<br>' + 'Answered Incorrectly: ' + incorrect + '<br>' + '<br>' + 'Unaswered: ' + unanswered);
-		$('#startGame').add();
-
+      stop();
+      empty();
 		} 
+    //otherwise go to the next question
 		else 
 		{
 			setTimeout(addQuestion, 1000);
@@ -194,12 +219,12 @@
 	}
 
 
-	//clock
+	//clock reset
 	function timeReset(){
 
 		$('#interval').empty();
 
-		time = 31;
+		time = 16;
 
 		stop();
 
@@ -207,13 +232,13 @@
 
 
 	}
-
+  //runs the clock
 	function runTime(){
 
 		intervalId = setInterval(decrement, 1000);
 
 	}
-
+  //decreases the clock properly
 	function decrement(){
 
 		time--;
@@ -222,21 +247,24 @@
 
 		if (time === 0){
 			stop();
-			$('.answers').empty();
-  			$("#quest").empty();
-  			$('#quest').html("Heres How You Did:");
-			$('#answerArea').append('<div>').html('Answered Correctly: ' + correct + '<br>' + '<br>' + 'Answered Incorrectly: ' + incorrect + '<br>' + '<br>' + 'Unaswered: ' + unanswered);
+      empty();
 		}
 	}
-
+  //clears the interval so it doesnt keep doubling
 	function stop(){
 
 		clearInterval(intervalId);
 
 	}
 
-
-	
+  //clears the board displays results and tryagain button
+  function empty(){
+    $('.answers').empty();
+        $("#quest").empty();
+        $('#quest').html("Heres How You Did:");
+      $('#answerArea').append('<div>').html('Answered Correctly: ' + correct + '<br>' + '<br>' + 'Answered Incorrectly: ' + incorrect + '<br>' + '<br>' + 'Unaswered: ' + unanswered);
+      $('#tryAgain').show();
+  }
 
 
 

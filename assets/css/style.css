@@ -25,8 +25,8 @@ body{
     margin-top: 50px;
 }
 #startGame:hover{
-	background-color: white;
-	opacity: 0.8;
+
+	opacity: 0.7;
 }
 .answers:hover{
 	background-color: white;
@@ -59,3 +59,14 @@ body{
 #answerArea{
 	color: #A17438;
 }
+#tryAgain{
+	background-color: green;
+	color: white;
+    font-size: 35px;
+    display: none;
+    border: 3px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 330px;
+}
+
